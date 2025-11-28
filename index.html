@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET Aspire - Presentation</title>
+   <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #2d1b3d;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            padding: 60px 80px;
+            background: linear-gradient(135deg, #4a2456 0%, #2d1b3d 50%, #1a1a2e 100%);
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide h1 {
+            font-size: 4em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        .slide h2 {
+            font-size: 3em;
+            margin-bottom: 40px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .slide h3 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: #e0e0e0;
+            font-weight: 600;
+        }
+
+        .slide ul {
+            list-style: none;
+            font-size: 1.5em;
+            line-height: 2;
+        }
+
+        .slide ul li {
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .slide ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #b084cc;
+            font-weight: bold;
+        }
+
+        .slide p {
+            font-size: 1.5em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #fff;
+            color: #2d1b3d;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            font-size: 1.2em;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            margin: 20px 0;
+            border-left: 5px solid #b084cc;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .feature-box {
+            background: rgba(176, 132, 204, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(176, 132, 204, 0.3);
+        }
+
+        .highlight {
+            color: #84cc85;
+            font-weight: bold;
+        }
+
+        .title-slide {
+            background: linear-gradient(135deg, #4a2456 0%, #2d1b3d 100%);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            margin-top: 20px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>🚀 .NET Aspire</h1>
+            <p class="subtitle">Bygga molnbaserade, observerbara applikationer</p>
+            <p style="margin-top: 40px; font-size: 1.3em;">Ett modernt ramverk för distribuerade applikationer</p>
+        </div>
+
+        <!-- Slide 2: Vad är .NET Aspire? -->
+        <div class="slide">
+            <h2>Vad är .NET Aspire?</h2>
+            <ul>
+                <li>En samlad stack för att bygga observerbara, produktionsklara distribuerade applikationer</li>
+                <li>Lanserades i <span class="highlight">GA version i maj 2024</span></li>
+                <li>Bygger på .NET 8 och senare</li>
+                <li>Förenklar utveckling, test och drift av distribuerade applikationer</li>
+                <li>Fokus på observabilitet, orkestrering och utvecklarproduktivitet</li>
+                <li>Integrerad med Visual Studio 2022 och VS Code</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Varför .NET Aspire? -->
+        <div class="slide">
+            <h2>Varför .NET Aspire?</h2>
+            <div class="grid-2">
+                <div class="feature-box">
+                    <h3>Problem utan Aspire</h3>
+                    <ul>
+                        <li>Komplex konfiguration</li>
+                        <li>Svår lokal utveckling</li>
+                        <li>Manuell orkestrering (yaml)</li>
+                        <li>Bristande observerbarhet</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <h3>Lösning med Aspire</h3>
+                    <ul>
+                        <li>Standardiserad setup</li>
+                        <li>Enkel lokal utveckling</li>
+                        <li>Koddriven orkestrering (AppHost)</li>
+                        <li>Dashboard: Ger överblick och insikt i realtid</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Kärnkomponenter -->
+        <div class="slide">
+            <h2>Kärnkomponenter</h2>
+            <ul>
+                <li><span class="highlight">App Host:</span> Definierar hela applikationens struktur och beroenden i kod</li>
+                <li><span class="highlight">Service Defaults:</span> Standardkonfiguration för observerbarhet</li>                
+                <li><span class="highlight">Orkestrering:</span> Hanterar startordning, beroenden och konfiguration</li>
+                <li><span class="highlight">Components:</span> NuGet-paket för integration med tjänster (Redis, PostgreSQL, RabbitMQ, etc.)</li>
+                <li><span class="highlight">Dashboard:</span> Realtidsövervakning och diagnostik</li>
+            </ul>
+        </div>
+
+        <!-- Slide 5: App Host -->
+        <div class="slide">
+            <h2>App Host - Orkestrering</h2>
+            <div class="code-block">
+                <pre>
+var builder = DistributedApplication.CreateBuilder(args);
+
+var apiService = builder.AddProject<Projects.MinApp_ApiService>("apiservice")
+    .WithHttpHealthCheck("/health");
+
+builder.AddProject<Projects.MinApp_Web>("webfrontend")
+    .WithExternalHttpEndpoints()
+    .WithHttpHealthCheck("/health")
+    .WithReference(apiService)
+    .WaitFor(apiService);
+
+builder.Build().Run();
+
+</pre>
+            </div>
+            <p>Deklarativ konfiguration av hela applikationen!</p>
+        </div>
+
+        <!-- Slide 6: Service Discovery -->
+        <div class="slide">
+            <h2>Service Discovery</h2>
+            <ul>
+                <li>Automatisk tjänstupptäckt mellan komponenter</li>
+                <li>Inga hårdkodade URLs eller portar</li>
+                <li>Fungerar lokalt och i produktion</li>
+                <li>Stöd för HTTP och gRPC</li>
+            </ul>
+            <div class="code-block">
+<pre>
+// I din API-anrop
+var response = await httpClient
+    .GetFromJsonAsync&lt;WeatherData&gt;(
+        "https://apiservice/weather");
+        </pre>
+            </div>
+        </div>
+
+        <!-- Slide 7: Observerbarhet -->
+        <div class="slide">
+            <h2>Inbyggd Observerbarhet</h2>
+            <ul>
+                <li><span class="highlight">Logging:</span> Strukturerad loggning med standardkonfiguration</li>
+                <li><span class="highlight">Tracing:</span> Distribuerad spårning med OpenTelemetry</li>
+                <li><span class="highlight">Metrics:</span> Prestandamätningar och hälsokontroller</li>
+                <li><span class="highlight">Dashboard:</span> Visuell övervakning i realtid</li>
+            </ul>
+        </div>
+
+        <!-- Slide 8: Dashboard -->
+        <div class="slide">
+            <h2>Aspire Dashboard</h2>
+            <ul>
+                <li>Webb-baserat gränssnitt för utveckling och övervakning</li>
+                <li>Visar alla tjänster, containrar och köer</li>
+                <li>Realtids loggar och traces</li>
+                <li>Prestandamätningar och resursanvändning</li>
+                <li>Miljövariabler och konfiguration</li>
+                <li>Kan användas standalone eller integrerat</li>
+            </ul>
+        </div>
+
+        <!-- Slide 9: Components -->
+        <div class="slide">
+            <h2>Aspire Components</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Databaser</h3>
+                    <ul>
+                        <li>PostgreSQL</li>
+                        <li>SQL Server</li>
+                        <li>MongoDB</li>
+                        <li>MySQL</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Messaging & Cache</h3>
+                    <ul>
+                        <li>Redis</li>
+                        <li>RabbitMQ</li>
+                        <li>Azure Service Bus</li>
+                        <li>Kafka</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 30px;">+ många fler: Azure Storage, Orleans, Seq, Elasticsearch...</p>
+        </div>
+
+        <!-- Slide 10: Deployment -->
+        <div class="slide">
+            <h2>Deployment</h2>
+            <ul>
+                <li><span class="highlight">Azure Container Apps:</span> Förstklassigt stöd via Azure Developer CLI (azd)</li>
+                <li><span class="highlight">Kubernetes:</span> Generera manifests med aspirate eller andra verktyg</li>
+                <li><span class="highlight">Docker Compose:</span> Export för containerbaserad deployment</li>
+                <li>Flexibel arkitektur för olika molnplattformar</li>
+            </ul>
+        </div>
+
+        <!-- Slide 11: Fördelar -->
+        <div class="slide">
+            <h2>Fördelar med .NET Aspire</h2>
+            <ul>
+                <li><span class="highlight">Produktivitet:</span> Snabbare utveckling med färre konfigurationer</li>
+                <li><span class="highlight">Konsekvens:</span> Standardiserade patterns över hela teamet</li>
+                <li><span class="highlight">Observerbarhet:</span> Inbyggd från början, inte som efterkonstruktion</li>
+                <li><span class="highlight">Lokal utveckling:</span> Samma upplevelse som produktion</li>
+                <li><span class="highlight">Molnklar:</span> Byggd för cloud-native från grunden</li>
+            </ul>
+        </div>
+
+        <!-- Slide 12: När ska man använda? -->
+        <div class="slide">
+            <h2>När ska man använda .NET Aspire?</h2>
+            <div class="grid-2">
+                <div class="feature-box">
+                    <h3 style="color: #4caf50;">✓ Perfekt för</h3>
+                    <ul>
+                        <li>Mikrotjänster</li>
+                        <li>Distribuerade appar</li>
+                        <li>Cloud-native projekt</li>
+                        <li>Nya projekt</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <h3 style="color: #ff9800;">⚠ Mindre lämplig för</h3>
+                    <ul>
+                        <li>Enkla monoliter</li>
+                        <li>Legacy-system</li>
+                        <li>Icke-.NET ekosystem</li>
+                        <li>Mycket simpla appar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Komma igång -->
+        <div class="slide">
+            <h2>Komma igång</h2>
+            <div class="code-block">
+<pre>
+# Installera .NET 8 SDK eller senare
+dotnet --version
+
+# Installera Aspire workload
+dotnet workload install aspire
+
+# Skapa nytt Aspire-projekt
+dotnet new aspire-starter -n MinApp
+
+# Kör projektet
+cd MinApp
+dotnet run --project MinApp.AppHost
+</pre>
+            </div>
+            <p>Dashboard öppnas automatiskt på https://localhost:17140</p>
+        </div>
+
+        <!-- Slide 14: Resurser -->
+        <div class="slide">
+            <h2>Resurser</h2>
+            <ul>
+                <li><span class="highlight">Dokumentation:</span> learn.microsoft.com/dotnet/aspire</li>
+                <li><span class="highlight">GitHub:</span> github.com/dotnet/aspire</li>
+                <li><span class="highlight">Exempel:</span> github.com/dotnet/aspire-samples</li>
+                <li><span class="highlight">YouTube:</span> .NET Channel - Aspire tutorials</li>                
+            </ul>
+        </div>
+
+        <!-- Slide 15: Sammanfattning -->
+        <div class="slide title-slide">
+            <h2>Sammanfattning</h2>
+            <ul style="text-align: left; max-width: 800px; margin: 0 auto;">
+                <li>Modern lösning för cloud-native .NET-utveckling</li>
+                <li>Förenklar orkestrering och konfiguration</li>
+                <li>Inbyggd observerbarhet med Dashboard</li>
+                <li>Rika ekosystem av components</li>
+                <li>Produktionsklart och aktivt utvecklat</li>
+            </ul>
+            <p style="margin-top: 50px; font-size: 2em;">Tack för er uppmärksamhet! 🚀</p>
+        </div>
+    </div>
+
+    <div class="slide-number">
+        <span id="current-slide">1</span> / <span id="total-slides">15</span>
+    </div>
+
+    <div class="controls">
+        <button onclick="previousSlide()">← Föregående</button>
+        <button onclick="nextSlide()">Nästa →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+    </script>
+</body>
+</html>
